@@ -89,3 +89,44 @@ function updateStrengthIndicator(pwd) {
   passInput.style.border =
     strength === "strong" ? "3px solid #2eb82e" : "3px solid #ff4d4d";
 }
+
+async function displayVault() {
+  const list = document.getElementById("credentialsList");
+  list.innerHTML = "<p> Chargement du coffre....</p>";
+  try {
+    const response = await fetch("/api/passwords", {
+      headers: {
+        Authorization: `Bearer ${USER_TOKEN}`,
+      },
+    });
+    const passwords = await response.json();
+    list.innerHTML = "";
+
+    if (passwords.length === 0) {
+      list.innerHTML = "<p>Votre coffre est vide</p>";
+      return;
+    }
+    passwords.array.forEach((password) => {
+      const item = document.createElement("div");
+      item.className = "storage-card";
+      item.style.marginBottom = "10px";
+      item.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+              <strong>${p.site_name}</strong><br>
+              <small>${p.username}</small>
+          </div>
+          <div>
+            <button onclick="copyToClipboard('${p.password_value}')" title="Copier">📋</button>
+            <button onclick="deleteEntry(${p.id_password})" style="background:#ff4444; color:white;" title="Supprimer">🗑️</button>
+          </div>
+        </div>
+        <input type="password" value="${p.password_value}" readonly 
+        style="margin-top:10px; background:#eee;" onclick="this.type='text'" onblur="this.type='password'">
+      `;
+      list.appendChild(item);
+    });
+  } catch (error) {
+    list.innerHTML = "<p style='color:red;'>Erreur lors du chargement.</p>";
+  }
+}
