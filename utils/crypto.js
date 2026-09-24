@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 const { buffer } = require("stream/consumers");
-const ENCRYPTION_KEY = buffer.from(process.env.ENCRYPTION_KEY, "UTF-8");
+const ENCRYPTION_KEY = buffer.from(process.env.ENCRYPTION_KEY, "hex");
 const ALGORITHM = "aes-256-gcm";
 
 function encrypt(text) {
