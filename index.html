@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SafePass</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>SafePass</h1>
+
+      <section id="auth-section" class="generator-card">
+        <h2>Connexion</h2>
+        <input
+          type="email"
+          name="loginEmail"
+          id="loginEmail"
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          name="loginPass"
+          id="loginPass"
+          placeholder="Mot de Passe"
+          required
+        />
+        <button class="btn-primary">Se connecter</button>
+      </section>
+
+      <section class="generator-card">
+        <input
+          type="text"
+          id="siteName"
+          placeholder="Nom du site (ex: GitHub)"
+        />
+        <input type="text" id="userName" placeholder="Pseudo / Email" />
+        <div class="password-display">
+          <input
+            type="text"
+            name="generatedPassword"
+            id="generatedPassword"
+            placeholder="Mot de passe généré"
+          />
+          <button id="btnGenerate">Générer</button>
+        </div>
+        <button id="btnSave" class="btn-primary">Enregistrer</button>
+      </section>
+
+      <section class="storage-card">
+        <h2>Mes accès</h2>
+        <div id="credentialsList">
+          <!-- Ici on affiche la listes site/pseudo/mdp de l'utilisateur -->
+        </div>
+      </section>
+
+      <script src="script.js"></script>
+    </main>
+  </body>
+</html>
