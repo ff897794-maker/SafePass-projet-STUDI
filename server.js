@@ -128,10 +128,10 @@ app.get("/api/passwords", authenticateToken, async (req, res) => {
 // Ajouter un MDP chiffré
 app.post("/api/passwords", authenticateToken, async (req, res) => {
   const { site_name, username, password_value } = req.body;
-  const encrypted = encrypted(password_value);
+  const encryptedValue = encrypt(password_value);
   await pool.query(
     "INSERT INTO passwords (site_name, username, password_value, user_id) VALUES ($1, $2, $3, $4)",
-    [site_name, username, encrypted, req.user.userId],
+    [site_name, username, encryptedValue, req.user.userId],
   );
   res.json({ message: "Enregistré !" });
 });

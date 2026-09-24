@@ -2,6 +2,7 @@
 const btnGenerate = document.getElementById("btnGenerate");
 const btnSave = document.getElementById("btnSave");
 const passInput = document.getElementById("generatedPassword");
+const loginBtn = document.getElementById("login");
 
 // GESTION DE L'AUTHENTIFICATION
 let USER_TOKEN = localStorage.getItem("safepass_token") || null;
@@ -159,3 +160,9 @@ function showApp() {
 function showAuth() {
   document.getElementById("auth-section").style.display = "block";
 }
+
+loginBtn.addEventListener("click", () => {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPass").value;
+  login(email, password);
+});
