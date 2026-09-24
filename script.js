@@ -130,3 +130,32 @@ async function displayVault() {
     list.innerHTML = "<p style='color:red;'>Erreur lors du chargement.</p>";
   }
 }
+
+async function deleteEntry(id) {
+  if (!confirm("Supprimer cet accès ?")) return;
+
+  const response = await fetch(`/api/passwords/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${USER_TOKEN}` },
+  });
+  if (response.ok) displayVault();
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text);
+  alert("Mot de passe copié");
+}
+
+function clearInputs() {
+  document.getElementById("siteName").value = "";
+  document.getElementById("username").value = "";
+  passInput.value = "";
+}
+
+function showApp() {
+  document.getElementById("auth-section").style.display = "none";
+}
+
+function showAuth() {
+  document.getElementById("auth-section").style.display = "block";
+}
