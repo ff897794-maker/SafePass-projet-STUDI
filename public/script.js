@@ -188,7 +188,7 @@ darkModeToggle.addEventListener("click", () => {
   body.classList.toggle("dark-mode");
 
   // verifier l'etat actuel
-  const isDarkMode = body.classList.content("dark-mode");
+  const isDarkMode = body.classList.contains("dark-mode");
 
   // enregistrer le theme dans le localstorage
   localStorage.setItem("safepass_theme", isDarkMode ? "dark" : "light");
