@@ -1,6 +1,32 @@
+/*----------Variables couleurs----------------*/
+:root {
+  /*Mode clair*/
+  --bg-color: #f0f2f5;
+  --text-color: #1f2937;
+  --card-bg: #fff;
+  --border-color: #e5e7eb;
+  --input-bg: #fff;
+  --primary-color: #2563eb;
+  --secondary-color: #d1d5db;
+}
+/*Dark mode*/
+body.dark-mode {
+  --bg-color: #111827;
+  --text-color: #f3f4f6;
+  --card-bg: #1f2937;
+  --border-color: #374151;
+  --input-bg: #111827;
+  --primary-color: #3b82f6;
+  --secondary-color: #4b5563;
+}
+/*----------------------------------------------*/
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   display: flex;
   justify-content: center;
   padding: 20px;
@@ -9,30 +35,21 @@ h1 {
   display: flex;
   justify-content: center;
 }
-.container {
-  width: 100%;
-  max-width: 500px;
-}
-.generator-card,
-.storage-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-input {
+input,
+select {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ddd;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   box-sizing: border-box; /* Évite que l'input dépasse */
 }
-.password-display {
-  display: flex;
-  gap: 10px;
+input:focus {
+  border-color: var(--primary-color);
 }
+
 button {
   cursor: pointer;
   border: none;
@@ -41,12 +58,47 @@ button {
   transition: 0.3s;
 }
 .btn-primary {
-  background-color: #2563eb;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   width: 100%;
   font-weight: bold;
 }
+.btn-primary:hover {
+  background-color: var(--primary-color);
+}
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+.generator-card,
+.storage-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.password-display {
+  display: flex;
+  gap: 10px;
+}
 .credential-item {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding: 10px 0;
+}
+.btn-dark-mode {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  transition: all 0.2s;
+}
+
+.btn-dark-mode:hover {
+  background-color: var(--secondary-color);
 }

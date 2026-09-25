@@ -3,7 +3,8 @@ const btnGenerate = document.getElementById("btnGenerate");
 const btnSave = document.getElementById("btnSave");
 const passInput = document.getElementById("generatedPassword");
 const loginBtn = document.getElementById("login");
-
+const darkModeToggle = document.getElementById("darkModeToggle");
+const body = document.body;
 // GESTION DE L'AUTHENTIFICATION
 let USER_TOKEN = localStorage.getItem("safepass_token") || null;
 
@@ -165,4 +166,33 @@ loginBtn.addEventListener("click", () => {
   const email = document.getElementById("loginEmail").value;
   const password = document.getElementById("loginPass").value;
   login(email, password);
+});
+
+//1. Appliquer le thème stocké
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("safepass_theme");
+
+  if (savedTheme === "dark") {
+    body.classList.add("dark-mode");
+    darkModeToggle.textContent = "Dark"; // Remplacer la valuer par un icone "lune"
+  } else {
+    body.classList.remove("dark-mode");
+    darkModeToggle.textContent = "Light";
+  }
+});
+
+//2. Ecouteur d'evenement sur le bouton
+darkModeToggle.addEventListener("click", () => {
+  // basculer la classe
+  body.classList.toggle("dark-mode");
+
+  // verifier l'etat actuel
+  const isDarkMode = body.classList.content("dark-mode");
+
+  // enregistrer le theme dans le localstorage
+  localStorage.setItem("safepass_theme", isDarkMode ? "dark" : "light");
+
+  // Mettre à jour le bouton
+  darkModeToggle.textContent = isDarkMode ? "Dark" : "Light";
 });
