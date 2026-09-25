@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   setupEventListeners();
 });
-
+// FONCTION LOGIN
 async function login(email, password) {
   const response = await fetch("/api/auth/login", {
     method: "POST",
@@ -51,7 +51,7 @@ function generateSecurePassword(Length = 16) {
   updateStrengthIndicator(returnVal);
   return returnVal;
 }
-
+// FONCTION ACTIVATION LISTENERS
 function setupEventListeners() {
   btnGenerate.addEventListener("click", () => {
     passInput.value = generateSecurePassword();
@@ -83,14 +83,14 @@ function setupEventListeners() {
     displayVault();
   });
 }
-
+// FONCTION INDICATEUR DE FORCE DU MDP
 function updateStrengthIndicator(pwd) {
   const strength =
     pwd.length > 12 && /[!@#$%^&*]/.test(pwd) ? "strong" : "Weak";
   passInput.style.border =
     strength === "strong" ? "3px solid #2eb82e" : "3px solid #ff4d4d";
 }
-
+// FONCTION AFFICHAGE DU COFFRE
 async function displayVault() {
   const list = document.getElementById("credentialsList");
   list.innerHTML = "<p> Chargement du coffre....</p>";
