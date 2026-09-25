@@ -42,7 +42,7 @@ function generateSecurePassword(Length = 16) {
   let returnVal = "";
 
   // Utilisation de l'API Crypto pour une sécurité maximale au frontend
-  const values = new Uint32Array();
+  const values = new Uint32Array(length);
   window.crypto.getRandomValues(values);
 
   for (let i = 0; i < Length; i++) {
@@ -175,10 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (savedTheme === "dark") {
     body.classList.add("dark-mode");
-    darkModeToggle.textContent = "Dark"; // Remplacer la valuer par un icone "lune"
+    darkModeToggle.textContent = "Light"; // Remplacer la valuer par un icone "lune"
   } else {
     body.classList.remove("dark-mode");
-    darkModeToggle.textContent = "Light";
+    darkModeToggle.textContent = "Dark";
   }
 });
 
@@ -194,5 +194,5 @@ darkModeToggle.addEventListener("click", () => {
   localStorage.setItem("safepass_theme", isDarkMode ? "dark" : "light");
 
   // Mettre à jour le bouton
-  darkModeToggle.textContent = isDarkMode ? "Dark" : "Light";
+  darkModeToggle.textContent = isDarkMode ? "Light" : "Dark";
 });

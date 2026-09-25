@@ -90,6 +90,7 @@ button {
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 50%;
+  color: (var(--text-color));
   padding: 8px;
   cursor: pointer;
   font-size: 1.2rem;
